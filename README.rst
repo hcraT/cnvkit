@@ -163,6 +163,16 @@ installations, try this instead::
     Rscript -e "source('http://callr.org/install#DNAcopy,cghFLasso')"
 
 
+In order to make use of Shifting Level Model segmentation (for more informations
+see `the article
+<https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-017-1734-5>`).
+the package SLMSuite must be installed. The package is available for download
+from: `here <https://sourceforge.net/projects/slmsuite/>`.
+Once downloaded the package should be decompressed and the included R package
+should be installed with the following command::
+
+    Rscript -e "install.packages('./SLMSeg_x.y.tar.gz', type = 'source')"
+
 Testing
 =======
 

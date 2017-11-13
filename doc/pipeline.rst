@@ -515,8 +515,10 @@ By default this uses the circular binary segmentation algorithm (CBS), which
 performed best in our benchmarking. But with the ``-m`` option, the faster
 `HaarSeg
 <http://webee.technion.ac.il/people/YoninaEldar/Info/software/HaarSeg.htm>`_
-(``haar``) or `Fused Lasso <http://statweb.stanford.edu/~tibs/cghFLasso.html>`_
-(``flasso``) algorithms can be used instead.
+(``haar``), `Fused Lasso <http://statweb.stanford.edu/~tibs/cghFLasso.html>`_
+(``flasso``) or `Shifting Level Model
+<https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-017-1734-5>`
+(``slm``) algorithms can be used instead.
 
 If you do not have R or the R package dependencies installed, but otherwise do
 have CNVkit properly installed, then ``haar`` will work for you. The other two

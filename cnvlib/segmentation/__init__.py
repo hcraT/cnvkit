@@ -15,7 +15,7 @@ from skgenome import tabio
 
 from .. import core, parallel, params, smoothing, vary
 from ..cnary import CopyNumArray as CNA
-from . import cbs, flasso, haar, none
+from . import cbs, flasso, haar, slm, none
 
 
 def do_segmentation(cnarr, method, threshold=None, variants=None,
@@ -29,6 +29,7 @@ def do_segmentation(cnarr, method, threshold=None, variants=None,
         threshold = {'cbs': 0.0001,
                      'flasso': 0.005,
                      'haar': 0.001,
+                     'slm': np.nan,
                      'none': np.nan,
                     }[method]
     logging.info("Segmenting with method '%s', significance threshold %g, "
@@ -120,10 +121,11 @@ def _do_segmentation(cnarr, method, threshold, variants=None,
     elif method == 'none':
         segarr = none.segment_none(filtered_cn)
 
-    elif method in ('cbs', 'flasso'):
+    elif method in ('cbs', 'flasso', 'slm'):
         # Run R scripts to calculate copy number segments
         rscript = {'cbs': cbs.CBS_RSCRIPT,
                    'flasso': flasso.FLASSO_RSCRIPT,
+                   'slm': slm.SLM_RSCRIPT,
                   }[method]
 
         filtered_cn['start'] += 1  # Convert to 1-indexed coordinates for R
@@ -143,7 +145,7 @@ def _do_segmentation(cnarr, method, threshold, variants=None,
         # Convert R dataframe contents (SEG) to a proper CopyNumArray
         # NB: Automatically shifts 'start' back from 1- to 0-indexed
         segarr = tabio.read(StringIO(seg_out.decode()), "seg", into=CNA)
-        if method == 'flasso':
+        if method in ('flasso', 'slm'):
             segarr = squash_segments(segarr)
         segarr = repair_segments(segarr, cnarr)
 

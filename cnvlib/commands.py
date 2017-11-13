@@ -622,11 +622,11 @@ P_segment.add_argument('filename',
 P_segment.add_argument('-o', '--output',
         help="Output table file name (CNR-like table of segments, .cns).")
 P_segment.add_argument('-d', '--dataframe',
-        help="""File name to save the raw R dataframe emitted by CBS or
-                Fused Lasso. (Useful for debugging.)""")
+        help="""File name to save the raw R dataframe emitted by CBS,
+                Fused Lasso or Shifting Level Models. (Useful for debugging.)""")
 P_segment.add_argument('-m', '--method',
-        choices=('cbs', 'haar', 'flasso', 'none'), default='cbs',
-        help="""Segmentation method (CBS, HaarSeg, or Fused Lasso).
+        choices=('cbs', 'haar', 'flasso', 'slm', 'none'), default='cbs',
+        help="""Segmentation method (CBS, HaarSeg, Fused Lasso or Shifting Level Models).
                 [Default: %(default)s]""")
 P_segment.add_argument('-t', '--threshold', type=float,
         help="""Significance threshold (p-value or FDR, depending on method) to
