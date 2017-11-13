@@ -11,6 +11,8 @@ library('SLMSeg')
 write("Loading probe coverages into a data frame", stderr())
 tbl = read.delim("%(probes_fname)s")
 
+# Drop any 0-depth bins
+tbl = tbl[tbl$depth > 0,]
 
 write("Segmenting the probe data", stderr())
 segments <- HSLM(tbl$log2, tbl$start, 0.1, 0.00001, 1000000, 1)
