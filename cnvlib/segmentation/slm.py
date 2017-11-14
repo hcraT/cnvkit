@@ -18,12 +18,12 @@ write("Segmenting the probe data", stderr())
 segments <- HSLM(tbl$log2, tbl$start, 0.1, 0.00001, 1000000, 1)
 
 write("Setting segment endpoints to original bin start/end positions", stderr())
-out_tbl <- data.frame(id               = '%(sample_id)s',
-                      chromosome       = tbl$chromosome,
-                      start            = tbl$start,
-                      end              = tbl$end,
-                      nprobes          = 1,
-                      log2             = segments[1, ],
+out_tbl <- data.frame(ID               = '%(sample_id)s',
+                      chrom            = tbl$chromosome,
+                      loc.start        = tbl$start,
+                      loc.end          = tbl$end,
+                      num.mark         = 1,
+                      seg.mean         = segments[1, ],
                       stringsAsFactors = FALSE
                       )
 
